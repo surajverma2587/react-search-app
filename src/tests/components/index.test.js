@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import SearchWidget from '../../components/SearchWidget'
 
-const render = () => shallow(<SearchWidget />)
+const render = (props = {}) => shallow(<SearchWidget {...props} />)
 
 test('should render the snapshot of the SearchWidget component', () => {
   expect(render()).toMatchSnapshot();
@@ -54,4 +54,19 @@ test('should render the search results container', () => {
 
 test('should render the search results item with expected count of 3', () => {
   expect(render().find('.c-search-results__item').length).toEqual(3)
+})
+
+test('should render the SearchWidget component with the expected title prop', () => {
+  const title = 'Foo'
+  expect(render({ title }).find('.c-searchwidget__title').text()).toEqual(title)
+})
+
+test('should render the SearchWidget component with the expected label prop', () => {
+  const label = 'Foo'
+  expect(render({ label }).find('.c-form-field__label').text()).toEqual(label)
+})
+
+test('should render the SearchWidget component with the expected placeholder prop', () => {
+  const placeholder = 'Foo'
+  expect(render({ placeholder }).find('input').prop('placeholder')).toEqual(placeholder)
 })
