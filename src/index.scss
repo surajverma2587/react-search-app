@@ -1,3 +1,87 @@
+$background__color--yellow: #f3ce56;
+$font__color--charcoal: #333;
+$font__color--ash: #444;
+$color--light-ash: #a4a4a4;
+$color--light-sky: #e7f4fe;
+
+$font__size--title: 1.5rem;
+$font__size--label: 0.875rem;
+$font__size--text: 1rem;
+
+$font__weight--title: 500;
+$font__weight--label: 400;
+
+$border-radius: 4px;
+
 body {
   font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.c-searchwidget {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 480px;
+  padding: 1.5rem;
+  background-color: $background__color--yellow;
+
+  .c-searchwidget__title {
+    font-size: $font__size--title;
+    font-weight: $font__weight--title;
+    line-height: 2rem;
+    margin: 0 0 1rem 0;
+    color: $font__color--charcoal;
+  }
+}
+
+.c-form-field__label {
+  display: block;
+  line-height: 1.25rem;
+  padding: 0 0 4px;
+  font-size: $font__size--label;
+  font-weight: $font__weight--label;
+  color: $font__color--ash;
+}
+
+.c-form-field__input {
+  display: block;
+  position: relative;
+
+  input[type="text"] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 8px 16px;
+    width: 100%;
+    height: 48px;
+    min-width: 49px;
+    border-radius: $border-radius;
+    border: 1px solid $color--light-ash;
+    font-size: $font__size--text;
+  }
+
+  input::placeholder {
+    font-size: $font__size--label;
+    color: $color--light-ash;
+    opacity: 0.5;
+  }
+}
+
+.c-search-results {
+  width: 100%;
+  border-radius: $border-radius;
+  background: #fff;
+  margin-top: 1px;
+}
+
+.c-search-results__item {
+  display: flex;
+  margin-left: 0;
+  padding: 8px 16px;
+  font-size: $font__size--label;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color--light-sky;
+  }
 }

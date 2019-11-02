@@ -1,7 +1,9 @@
 import React from 'react'
 
+import SearchWidget from './components/SearchWidget'
+
 const App = () => (
-  <div>Your app goes here...</div>
+  <SearchWidget />
 )
 
 export default App
