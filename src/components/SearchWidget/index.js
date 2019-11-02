@@ -1,23 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
+import useResults from './useResults'
 import SearchResults from '../SearchResults'
 
-const mockResults = [
-  'Manchester Airport',
-  'Manchester',
-  'Manchester - Piccadilly Train Station'
-];
-
 const SearchWidget = ({ label, title, placeholder }) => {
-  const [showResults, setShowResults] = useState(false)
-  const [results, setResults] = useState([])
-
-  const onBlur = () => setShowResults(false)
-
-  const onFocus = () => setShowResults(true)
-
-  const onChange = ({ target: { value }}) => value.length > 1 ? setResults(mockResults) : setResults([])
+  const [inputProps, showResults, results] = useResults()
 
   return (
     <div className="c-searchwidget">
@@ -28,9 +16,7 @@ const SearchWidget = ({ label, title, placeholder }) => {
           <input
             type="text"
             placeholder={placeholder}
-            onBlur={onBlur}
-            onFocus={onFocus}
-            onChange={onChange}
+            {...inputProps}
           />
           {
             showResults && results.length ? <SearchResults results={results} /> : null
