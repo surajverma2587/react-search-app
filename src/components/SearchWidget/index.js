@@ -18,9 +18,7 @@ const SearchWidget = ({ label, title, placeholder }) => {
             placeholder={placeholder}
             {...inputProps}
           />
-          {
-            showResults && results.length ? <SearchResults results={results} /> : null
-          }
+          <SearchResults showResults={showResults} results={results} />
         </div>
       </div>
     </div>
