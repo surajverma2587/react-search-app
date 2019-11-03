@@ -1,31 +1,33 @@
 import { useState } from 'react'
 
-const useResults = (initialState = {}) => {
-  const mockResults = [
-    'Manchester Airport',
-    'Manchester',
-    'Manchester - Piccadilly Train Station'
-  ];
-  
+import useFetchData from './useFetchData'
+import useDebounce from './useDebounce'
+
+const useResults = (initialState = {}) => { 
   const {
     initialShowResult = false,
-    initialResults = [],
+    initialSearchTerm = '',
   } = initialState
   const [showResults, setShowResults] = useState(initialShowResult)
-  const [results, setResults] = useState(initialResults)
+  const [searchTerm, setSearchTerm] = useState(initialSearchTerm)
 
   const onBlur = () => setShowResults(false)
 
   const onFocus = () => setShowResults(true)
 
-  const onChange = ({ target: { value } }) => value.length > 1 ? setResults(mockResults) : setResults([])
+  const onChange = ({ target: { value } }) => setSearchTerm(value)
+
+  const searchURL = useDebounce(searchTerm)
   
+  const data = useFetchData(searchURL)
+
   const props = {
     onBlur,
     onFocus,
     onChange,
   }
-  return [props, showResults, results]
+  
+  return [props, showResults, data]
 }
 
 export default useResults
