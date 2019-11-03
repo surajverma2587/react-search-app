@@ -19,6 +19,7 @@ exports[`Snapshot Tests should render the snapshot of the SearchWidget component
     >
       <label
         className="c-form-field__label"
+        htmlFor="pick-up-location"
       >
         Pick-up Location
       </label>
@@ -26,6 +27,7 @@ exports[`Snapshot Tests should render the snapshot of the SearchWidget component
         className="c-form-field__input"
       >
         <input
+          id="pick-up-location"
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}

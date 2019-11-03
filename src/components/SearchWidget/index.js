@@ -7,14 +7,17 @@ import SearchResults from '../SearchResults'
 const SearchWidget = ({ label, title, placeholder }) => {
   const [inputProps, showResults, results] = useResults()
 
+  const id = label.replace(' ', '-').toLowerCase()
+
   return (
     <div className="c-searchwidget">
       <h2 className="c-searchwidget__title">{title}</h2>
       <div className="c-searchwidget__searchbox">
-        <label className="c-form-field__label">{label}</label>
+        <label htmlFor={id} className="c-form-field__label">{label}</label>
         <div className="c-form-field__input">
           <input
             type="text"
+            id={id}
             placeholder={placeholder}
             {...inputProps}
           />

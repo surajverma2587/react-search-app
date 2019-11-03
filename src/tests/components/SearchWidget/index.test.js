@@ -79,6 +79,15 @@ describe('SearchWidget Props Tests', () => {
   })
 })
 
+describe('SearchWidget Accessibility Test', () => {
+  test('should make association between label and input element', () => {
+    const wrapper = render()
+    expect(wrapper.find('.c-form-field__label').prop('htmlFor')).toEqual('pick-up-location')
+    expect(wrapper.find('input').prop('id')).toEqual('pick-up-location')
+  })
+  
+})
+
 describe('Search Results', () => {
   test('should not render on initial render', () => {
     expect(render().find('.c-search-results').exists()).toEqual(false)
