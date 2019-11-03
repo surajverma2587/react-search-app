@@ -1,9 +1,18 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 
 import SearchWidget from '../../../components/SearchWidget'
+import useDebounce from '../../../components/SearchWidget/useDebounce'
+import useFetchData from '../../../components/SearchWidget/useFetchData'
 
-const render = (props = {}) => shallow(<SearchWidget {...props} />)
+jest.mock('../../../components/SearchWidget/useDebounce')
+jest.mock('../../../components/SearchWidget/useFetchData')
+
+const render = (props = {}) => mount(<SearchWidget {...props} />)
+
+afterEach(() => {    
+  jest.clearAllMocks()
+})
 
 describe('Snapshot Tests', () => {
   test('should render the snapshot of the SearchWidget component', () => {
@@ -72,7 +81,7 @@ describe('SearchWidget Props Tests', () => {
 
 describe('Search Results', () => {
   test('should not render on initial render', () => {
-    expect(render().find('SearchResults').exists()).toEqual(false)
+    expect(render().find('.c-search-results').exists()).toEqual(false)
   })
 
   test('should not render on onFocus event when results are empty', () => {
@@ -80,46 +89,62 @@ describe('Search Results', () => {
     const input = wrapper.find('input')
     input.simulate('focus')
   
-    expect(wrapper.find('SearchResults').exists()).toEqual(false)
+    expect(wrapper.find('.c-search-results').exists()).toEqual(false)
   })
 
   test('should render on onFocus event when results are not empty', () => {
     const wrapper = render()
     const input = wrapper.find('input')
+
+    useDebounce.mockReturnValue('someURL')
+    useFetchData.mockReturnValue(['Foo', 'Bar'])
+
     input.simulate('change', { target: { value: 'Fo' } })
     input.simulate('focus')
 
-    expect(wrapper.find('SearchResults').exists()).toEqual(true)
+    expect(wrapper.find('.c-search-results').exists()).toEqual(true)
   })
 
   test('should render on onChange event when length is greater than 1', () => {
     const wrapper = render()
     const input = wrapper.find('input')
+
+    useDebounce.mockReturnValue('someURL')
+    useFetchData.mockReturnValue(['Foo', 'Bar'])
+
     input.simulate('focus')
     input.simulate('change', { target: { value: 'Foo' } })
   
-    expect(wrapper.find('SearchResults').exists()).toEqual(true)
+    expect(wrapper.find('.c-search-results').exists()).toEqual(true)
   })
 
   test('should not render on onChange event when length is equal to 1', () => {
     const wrapper = render()
     const input = wrapper.find('input')
+
+    useDebounce.mockReturnValue('someURL')
+    useFetchData.mockReturnValue([])
+
     input.simulate('focus')
     input.simulate('change', { target: { value: 'F' } })
   
-    expect(wrapper.find('SearchResults').exists()).toEqual(false)
+    expect(wrapper.find('.c-search-results').exists()).toEqual(false)
   })
 
   test('should not render on onBlur event when results are not empty', () => {
     const wrapper = render()
     const input = wrapper.find('input')
+
+    useDebounce.mockReturnValue('someURL')
+    useFetchData.mockReturnValue(['Foo', 'Bar'])
+
     input.simulate('focus')
     input.simulate('change', { target: { value: 'Fo' } })
   
-    expect(wrapper.find('SearchResults').exists()).toEqual(true)
+    expect(wrapper.find('.c-search-results').exists()).toEqual(true)
 
     input.simulate('blur')
 
-    expect(wrapper.find('SearchResults').exists()).toEqual(false)
+    expect(wrapper.find('.c-search-results').exists()).toEqual(false)
   })
 })

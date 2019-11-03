@@ -1,33 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Snapshot Tests should render the snapshot of the SearchWidget component 1`] = `
-<div
-  className="c-searchwidget"
+<SearchWidget
+  label="Pick-up Location"
+  placeholder="city, airport, station, region, district..."
+  title="Where are you going?"
 >
-  <h2
-    className="c-searchwidget__title"
-  >
-    Where are you going?
-  </h2>
   <div
-    className="c-searchwidget__searchbox"
+    className="c-searchwidget"
   >
-    <label
-      className="c-form-field__label"
+    <h2
+      className="c-searchwidget__title"
     >
-      Pick-up Location
-    </label>
+      Where are you going?
+    </h2>
     <div
-      className="c-form-field__input"
+      className="c-searchwidget__searchbox"
     >
-      <input
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        placeholder="city, airport, station, region, district..."
-        type="text"
-      />
+      <label
+        className="c-form-field__label"
+      >
+        Pick-up Location
+      </label>
+      <div
+        className="c-form-field__input"
+      >
+        <input
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder="city, airport, station, region, district..."
+          type="text"
+        />
+        <SearchResults
+          results={Array []}
+          showResults={false}
+        />
+      </div>
     </div>
   </div>
-</div>
+</SearchWidget>
 `;
