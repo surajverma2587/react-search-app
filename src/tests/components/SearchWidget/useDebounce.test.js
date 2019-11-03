@@ -32,7 +32,7 @@ test('should return expected URL when value length is greater than 1', () => {
   const searchTerm = 'foo'
   const { result } = renderHook(() => useDebounce(searchTerm))
 
-  expect(result.current).toEqual(`https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=10&solrTerm=${searchTerm}`)
+  expect(result.current).toEqual(`https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=6&solrTerm=${searchTerm}`)
 })
 
 test('should call the setTimeout function', async () => {
@@ -48,7 +48,7 @@ test('should return the URL with the updated search term after timeout', async (
   
   act(() => jest.advanceTimersByTime(500));
 
-  expect(result.current).toEqual(`https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=10&solrTerm=${searchTerm}`)
+  expect(result.current).toEqual(`https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=6&solrTerm=${searchTerm}`)
   
   searchTerm = 'foobar'
   
@@ -56,7 +56,7 @@ test('should return the URL with the updated search term after timeout', async (
   
   act(() => jest.advanceTimersByTime(500));
 
-  expect(result.current).toEqual(`https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=10&solrTerm=${searchTerm}`)
+  expect(result.current).toEqual(`https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=6&solrTerm=${searchTerm}`)
 })
 
 test('should return the URL with the same search term before timeout', async () => {
@@ -65,7 +65,7 @@ test('should return the URL with the same search term before timeout', async () 
   
   act(() => jest.advanceTimersByTime(300));
 
-  expect(result.current).toEqual(`https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=10&solrTerm=foo`)
+  expect(result.current).toEqual(`https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=6&solrTerm=foo`)
   
   searchTerm = 'foobar'
   
@@ -73,6 +73,6 @@ test('should return the URL with the same search term before timeout', async () 
   
   act(() => jest.advanceTimersByTime(300));
 
-  expect(result.current).toEqual(`https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=10&solrTerm=foo`)
+  expect(result.current).toEqual(`https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=6&solrTerm=foo`)
 })
 

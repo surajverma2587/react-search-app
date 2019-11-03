@@ -13,7 +13,7 @@ const useDebounce = (searchTerm) => {
     }
   }, [searchTerm])
   
-  return (value && value.length > 1) ? `https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=10&solrTerm=${value}` : ''
+  return (value && value.length > 1) ? `https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=6&solrTerm=${value}` : ''
 }
 
 export default useDebounce
