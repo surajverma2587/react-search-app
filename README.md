@@ -1,5 +1,11 @@
 # React Search App
 
+## Demo App
+
+[Click Here](https://master.d2gmsl132ygn91.amplifyapp.com/)
+
+The above link will redirect you to the App deployed on AWS. This link is also used in End-To-End testing.
+
 ## Getting Started
 
 To clone the repository and run the app locally follow these steps:
@@ -67,6 +73,13 @@ The two custom hooks, useDebounce and useFetchData, are used within a third cust
 Tests were written for each custom hook and component tests become more like behaviour tests as the hooks logic was separated to files that can be reused. 
 
 NOTE - One assumption made to populate the dropdown was to just return the name properties from the API data as I was unclear of the business rules around what City, Country was used for different types and in some cases the concatenation of the display names (Manchester Airport (MAN).
+
+## Testing
+
+- Unit tests were added during development using the TDD approach.
+- Custom hooks were also individually tested to give confidence in reusing these hooks
+- Component tests for various states and behaviour were also tested
+- Lastly, end-to-end visual testing was performed using NightwatchJS
 
 ## Checklist
 
